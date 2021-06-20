@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+#leftMenu {
+    width: 200px;
+    height: 800px;
+    background-color: aqua;
+}
+#leftMenu a{
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    text-decoration: none;
+    display: block;
+}
+
+#leftMenu>ul {
+    display: flex;
+    flex-direction: column;
+}
+
+#leftMenu>ul>li>a {
+    background-color: gray;
+}
+
+#leftMenu>ul>li>ul {
+    display: none;
+}
+
+#leftMenu>ul>li>ul>li>a {
+    background-color: darkgray;
+}
+
