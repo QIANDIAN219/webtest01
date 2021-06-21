@@ -9,7 +9,7 @@ import java.util.List;
 public class test {
     public static void main(String[] args) {
         LoginDaoImpl loginDao = new LoginDaoImpl();
-        User user = loginDao.login("lzh", "lzh1234");
+        User user = loginDao.login("lgl", "lgl1234");
         String[][] title = new String[10][10];
         int m = 0, n = 0;
         for(Role role : user.getRoleList()) {

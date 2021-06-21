@@ -35,14 +35,15 @@ function showChild(k, li) {
 */
 
 $(document).ready(function() {
-    $("#leftMenu>ul li").each(function() {
+    $("#leftMenu>ul>li a").each(function() {
         $(this).click(function() {
-            var flag = $(this).children("ul").is(":visible");
+            console.log(11);
+            var flag = $(this).parent().children("ul").is(":visible");
             if(flag) {
-                $(this).children("ul").hide();
+                $(this).parent().children("ul").hide();
             } else {
-                $(this).children("ul").show();
-            }    
+                $(this).parent().children("ul").show();
+            }
         })
     })
 })
