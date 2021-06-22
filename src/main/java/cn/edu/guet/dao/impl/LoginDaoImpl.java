@@ -10,10 +10,39 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginDaoImpl implements ILoginDao {
     @Override
     public User login(String username, String password) {
+        Connection connection = JDBC.ConnectionOfMySQL();
+        String sql = "SELECT * FROM tb_user WHERE username=? AND password=?";
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        User user = null;
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            preparedStatement.execute();
+            resultSet = preparedStatement.getResultSet();
+            if(resultSet.next()) {
+                user = new User();
+                user.setUserId(resultSet.getString("USERID"));
+                user.setUserName(resultSet.getString("USERNAME"));
+                user.setRealName(resultSet.getString("REALNAME"));
+                return user;
+            }
+            return user;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return user;
+    }
+
+    @Override
+    public User getUser(String username, String password) {
         Connection connection = JDBC.ConnectionOfMySQL();
         String sql = "SELECT * FROM tb_user WHERE username=? AND password=?";
         PreparedStatement preparedStatement = null;
@@ -68,5 +97,34 @@ public class LoginDaoImpl implements ILoginDao {
             throwables.printStackTrace();
         }
         return user;
+    }
+
+    @Override
+    public List<Tree> getTrees(String userid) {
+        Connection connection = JDBC.ConnectionOfMySQL();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        String sql = null;
+        List<Tree> list = new ArrayList<Tree>();
+        try {
+            sql = "SELECT tree.* FROM tb_role_permission rp,tb_tree tree,tb_user_role ur WHERE tree.TreeId=rp.TreeId AND ur.roleId=rp.roleId AND ur.userId=?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, userid);
+            preparedStatement.execute();
+            resultSet = preparedStatement.getResultSet();
+            while(resultSet.next()) {
+                Tree tree = new Tree();
+                tree.setTreeId(resultSet.getString("TREEID"));
+                tree.setParentId(resultSet.getString("PARENTID"));
+                tree.setTitle(resultSet.getString("TITLE"));
+                tree.setUrl(resultSet.getString("URL"));
+                tree.setIsParent(resultSet.getString("ISPARENT"));
+                list.add(tree);
+            }
+            return list;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return list;
     }
 }

@@ -1,6 +1,7 @@
 <%@ page import="cn.edu.guet.bean.User" %>
 <%@ page import="cn.edu.guet.bean.Role" %>
-<%@ page import="cn.edu.guet.bean.Tree" %><%--
+<%@ page import="cn.edu.guet.bean.Tree" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: Lanzh
   Date: 2021/6/20
@@ -9,6 +10,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%List<Tree> treeList = (List<Tree>) request.getAttribute("treeList");%>
 <html>
     <head>
         <title>Title</title>
@@ -21,40 +23,24 @@
             <div id="leftMenu">
                 <ul>
                     <%
-                        User user = (User) request.getAttribute("user");
-                        String[][] title = new String[10][10];
-                        boolean flag = false;
-                        int m = 0, n = 0;
-                        for(Role role : user.getRoleList()) {
-                            for(Tree tree : role.getTreeList()) {
-                                if (tree.getIsParent().equals("True")) {
-                                    m++;
-                                    n=0;
-                                } else {
-                                    n++;
-                                }
-                                title[m][n] = tree.getTitle();
-                            }
-                        }
+                        for(int i = 0; i < treeList.size(); i++) {
+                            if(treeList.get(i).getIsParent().equals("True")) {
                     %>
-                    <%
-                        for(int i = 1; i < title.length; i++) {
-                            if(title[i][0] != null) {
-                    %>
-                                <li>
-                                <a href="#"><%=title[i][0]%></a>
-                                    <ul>
-                    <%
-                                    for(int j = 1; j < title[i].length; j++) {
-                                        if(title[i][j] != null) {
-                    %>
-                                            <li><a href="#"><%=title[i][j]%></a></li>
-                    <%
-                                        }
+                    <li>
+                        <a href="#"><%=treeList.get(i).getTitle()%></a>
+                        <ul>
+                            <%
+                                for(int j = i + 1; j < treeList.size(); j++) {
+                                    if(treeList.get(j).getIsParent().equals("True")) {
+                                        break;
                                     }
-                    %>
-                                    </ul>
-                                </li>
+                            %>
+                            <li><a href="#"><%=treeList.get(j).getTitle()%></a></li>
+                            <%
+                                }
+                            %>
+                        </ul>
+                    </li>
                     <%
                             }
                         }
@@ -67,14 +53,14 @@
                         </ul>
                     </li>
 
-                    <c:forEach items="${user.roleList[0].treeList}" var="tree" varStatus="status">
+                    <c:forEach items="${treeList}" var="tree" varStatus="status">
                         <c:choose>
                             <c:when test="${tree.isParent eq true}">
-                                <c:set var="eixtId" value="${user.roleList[0].treeList.size()}"></c:set>
+                                <c:set var="eixtId" value="${treeList.size()}"></c:set>
                                 <li>
                                     <a href="javascript:void(0)">${tree.title}</a>
                                     <ul>
-                                        <c:forEach items="${user.roleList[0].treeList}" var="trees" varStatus="statuss" begin="${status.index+1}">
+                                        <c:forEach items="${treeList}" var="trees" varStatus="statuss" begin="${status.index+1}">
                                             <c:if test="${trees.isParent eq true}">
                                                 <c:set var="eixtId" value="${statuss.index}"></c:set>
                                             </c:if>
@@ -87,8 +73,13 @@
                             </c:when>
                         </c:choose>
                     </c:forEach>
-
-
+                    <li>
+                        <a href="#">------------</a>
+                        <ul>
+                            <li><a href="#">------------</a></li>
+                            <li><a href="#">------------</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>

@@ -12,12 +12,17 @@ import java.io.IOException;
 
 public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        LoginServiceImpl loginService = new LoginServiceImpl();
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        LoginServiceImpl loginService = new LoginServiceImpl();
-        User user = loginService.login(username, password);
-        request.setAttribute("user", user);
-        request.getRequestDispatcher("leftMenu.jsp").forward(request, response);
+        String uri = request.getRequestURI();
+        if(uri.contains("login1")) {
+            User user = loginService.login(username, password);
+            request.setAttribute("usernaem", username);
+            response.sendRedirect("leftMenu?userid=" + user.getUserId());
+        } else if(uri.contains("login2")) {
+
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
