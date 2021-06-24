@@ -24,13 +24,12 @@ public class TreeServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("gettree");
         String userid = request.getParameter("userid");
         System.out.println(userid);
         LoginServiceImpl loginService = new LoginServiceImpl();
-        User user = loginService.getUser("lgl", "lgl1234");
-        List<Tree> list = user.getRoleList().get(0).getTreeList();
-        System.out.println(list.get(0).getTitle());
+//        User user = loginService.getUser("lgl", "lgl1234");
+//        List<Tree> list = user.getRoleList().get(0).getTreeList();
+        List<Tree> list = loginService.getTrees(userid);
 
         Gson gson = new Gson();
         response.setContentType("application/json;charset=UTF-8");

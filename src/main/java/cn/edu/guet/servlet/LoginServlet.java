@@ -18,14 +18,14 @@ public class LoginServlet extends HttpServlet {
         LoginServiceImpl loginService = new LoginServiceImpl();
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        User user = loginService.login(username, password);
         String uri = request.getRequestURI();
         if(uri.contains("login1")) {
-            User user = loginService.login(username, password);
-            request.setAttribute("usernaem", username);
             response.sendRedirect("leftMenu?userid=" + user.getUserId());
+
         } else if(uri.contains("login2")) {
-//            response.sendRedirect("leftMenu2.jsp");
-            System.out.println("login2");
+            request.setAttribute("userid", user.getUserId());
+            request.getRequestDispatcher("leftMenu2.jsp").forward(request, response);
         }
     }
 

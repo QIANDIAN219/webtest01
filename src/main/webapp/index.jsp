@@ -6,13 +6,14 @@
         <link rel="stylesheet" href="css/index.css">
         <script src="http://cdn.staticfile.org/jquery/3.6.0/jquery.js"></script>
         <script>
-            // window.onload = function() {
-            //     document.getElementById("username").onblur = function() {
-            //         document.getElementById("username").className = "checkUsername"
-            //         console.log(document.getElementById("username").value);
-            //         console.log(document.getElementById("password").value);
-            //     }
-            // }
+            window.onload = function() {
+                document.getElementById("login1").onblur = function() {
+                    document.getElementById("leftMenuForm").action = "login1";
+                }
+                document.getElementById("login2").onblur = function() {
+                    document.getElementById("leftMenuForm").action = "login2";
+                }
+            }
             // gson格式
             var student = {
                 'id':'1800710324',

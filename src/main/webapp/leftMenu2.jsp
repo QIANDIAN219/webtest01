@@ -13,9 +13,10 @@
         <link rel="stylesheet" href="css/leftMenu.css">
         <script src="http://cdn.staticfile.org/jquery/3.6.0/jquery.js"></script>
         <script>
+            <%String userid = (String) request.getAttribute("userid");%>
             $(function() {
                 $.ajax({
-                    url:'gettree?userid=u1000',
+                    url:'gettree?userid=<%=userid%>',
                     async:false,
                     success:function(data) {
                         $.each(data, function(index, treef) {
