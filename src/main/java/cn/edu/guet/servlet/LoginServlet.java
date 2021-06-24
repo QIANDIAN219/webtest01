@@ -1,7 +1,9 @@
 package cn.edu.guet.servlet;
 
+import cn.edu.guet.bean.Tree;
 import cn.edu.guet.bean.User;
 import cn.edu.guet.dao.impl.LoginDaoImpl;
+import cn.edu.guet.service.ILoginService;
 import cn.edu.guet.service.impl.LoginServiceImpl;
 
 import javax.servlet.ServletException;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -21,7 +24,8 @@ public class LoginServlet extends HttpServlet {
             request.setAttribute("usernaem", username);
             response.sendRedirect("leftMenu?userid=" + user.getUserId());
         } else if(uri.contains("login2")) {
-
+//            response.sendRedirect("leftMenu2.jsp");
+            System.out.println("login2");
         }
     }
 

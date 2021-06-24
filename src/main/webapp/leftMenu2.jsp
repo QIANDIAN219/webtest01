@@ -15,15 +15,50 @@
         <script>
             $(function() {
                 $.ajax({
-                    url:'gettree',
+                    url:'gettree?userid=u1000',
+                    async:false,
                     success:function(data) {
-                        console.log(data);
+                        $.each(data, function(index, treef) {
+                            if(treef.isParent=="True") {
+                                var li = $("<li><a href=\"javascript:void(0)\">"  + treef.title + "</a><ul></ul></li>");
+                                $("#leftMenu>ul").append(li);
+                                var startIndext = index;
+                                var flag = true;
+                                $.each(data, function(index, trees) {
+                                    if(startIndext < index && trees.isParent=="True") {
+                                        flag = false;
+                                    }
+                                    if(startIndext < index && flag) {
+                                        var li = $("<li><a href=\"javascript:void(0)\">"  + trees.title + "</a></li>");
+                                        $("#leftMenu>ul>li:last>ul").append(li);
+                                    }
+                                })
+                            }
+                        })
                     }
+                })
+            })
+            $(document).ready(function() {
+                $("#leftMenu>ul>li a").each(function() {
+                    $(this).click(function() {
+                        var flag = $(this).parent().children("ul").is(":visible");
+                        if(flag) {
+                            $(this).parent().children("ul").hide();
+                        } else {
+                            $(this).parent().children("ul").show();
+                        }
+                    })
                 })
             })
         </script>
     </head>
 <body>
+<div id="wrapper">
+    <div id="leftMenu">
+        <ul>
 
+        </ul>
+    </div>
+</div>
 </body>
 </html>

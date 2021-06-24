@@ -19,6 +19,10 @@
                 'name':'lzh'
             }
             $(document).ready(function(){
+                $("#login2").click(function() {
+                    console.log("1234");
+                    $("#leftMenuForm").attr("action", "login2");
+                })
                 $("input[id='username']").blur(function(){
                     $(this).addClass("checkUsername");
                     // 开始检测用户名是否能用
@@ -48,10 +52,11 @@
         </script>
     </head>
     <body>
-        <form action="login1" method="POST">
+        <form action="login1" method="POST" id="leftMenuForm">
             <label for="username">用户名：</label><input type="text" class="username" name="username" id="username">
             <label for="password">密码：</label><input type="password" name="password" id="password">
-            <input type="submit" value="登录">
+            <input type="submit" value="登录1" id="login1">
+            <input type="submit" value="登录2" id="login2">
         </form>
     </body>
 </html>

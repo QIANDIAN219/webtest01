@@ -18,6 +18,12 @@ public class LoginServiceImpl implements ILoginService {
     }
 
     @Override
+    public User getUser(String username, String password) {
+        ILoginDao loginDao = new LoginDaoImpl();
+        return loginDao.getUser(username, password);
+    }
+
+    @Override
     public List<Tree> getTrees(String userid) {
         ILoginDao loginDao = new LoginDaoImpl();
         return loginDao.getTrees(userid);

@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface ILoginService {
     User login(String username, String password);
+    User getUser(String username, String password);
     List<Tree> getTrees(String userid);
 }

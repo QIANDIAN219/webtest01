@@ -37,7 +37,6 @@ function showChild(k, li) {
 $(document).ready(function() {
     $("#leftMenu>ul>li a").each(function() {
         $(this).click(function() {
-            console.log(11);
             var flag = $(this).parent().children("ul").is(":visible");
             if(flag) {
                 $(this).parent().children("ul").hide();
