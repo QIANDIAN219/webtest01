@@ -15,9 +15,19 @@
         <script>
             <%String userid = (String) request.getAttribute("userid");%>
             $(function() {
+                /* 事件委托 将子元素事件绑定到父元素 用于动态绑定js事件 */
+                $("#leftMenu").on("click", "ul>li>a", function() {
+                    console.log(111);
+                    var flag = $(this).parent().children("ul").is(":visible");
+                    if(flag) {
+                        $(this).parent().children("ul").hide();
+                    } else {
+                        $(this).parent().children("ul").show();
+                    }
+                })
                 $.ajax({
                     url:'gettree?userid=<%=userid%>',
-                    async:false,
+                    // async:false,
                     success:function(data) {
                         $.each(data, function(index, treef) {
                             if(treef.isParent=="True") {
@@ -39,7 +49,7 @@
                     }
                 })
             })
-            $(document).ready(function() {
+            /*$(document).ready(function() {
                 $("#leftMenu>ul>li a").each(function() {
                     $(this).click(function() {
                         var flag = $(this).parent().children("ul").is(":visible");
@@ -50,7 +60,7 @@
                         }
                     })
                 })
-            })
+            })*/
         </script>
     </head>
 <body>

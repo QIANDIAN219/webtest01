@@ -22,11 +22,9 @@ public class CheckUserNameServlet extends HttpServlet {
         Gson gson=new Gson();
         if(username.equals("test")) {
             Result result=new Result("disable");
-            System.out.println(gson.toJson(result));
             out.write(gson.toJson(result));
         }else{
             Result result=new Result("enable");
-            System.out.println(gson.toJson(result));
             out.write(gson.toJson(result));
         }
         out.flush();

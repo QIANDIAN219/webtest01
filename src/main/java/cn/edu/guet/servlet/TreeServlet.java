@@ -25,7 +25,6 @@ public class TreeServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String userid = request.getParameter("userid");
-        System.out.println(userid);
         LoginServiceImpl loginService = new LoginServiceImpl();
 //        User user = loginService.getUser("lgl", "lgl1234");
 //        List<Tree> list = user.getRoleList().get(0).getTreeList();
