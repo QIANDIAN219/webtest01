@@ -5,6 +5,7 @@ import cn.edu.guet.bean.Tree;
 import cn.edu.guet.bean.User;
 import cn.edu.guet.dao.ILoginDao;
 import cn.edu.guet.dao.JDBC;
+import cn.edu.guet.filter.ConnectionFilter;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,7 +17,8 @@ import java.util.List;
 public class LoginDaoImpl implements ILoginDao {
     @Override
     public User login(String username, String password) {
-        Connection connection = JDBC.ConnectionOfMySQL();
+//        Connection connection = JDBC.ConnectionOfMySQL();
+        Connection connection = ConnectionFilter.getConnection();
         String sql = "SELECT * FROM tb_user WHERE username=? AND password=?";
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;

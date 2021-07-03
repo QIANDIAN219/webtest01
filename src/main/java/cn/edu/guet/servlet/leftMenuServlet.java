@@ -20,8 +20,6 @@ public class leftMenuServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String userid = request.getParameter("userid");
         String username = (String) request.getAttribute("usernaem");
-        System.out.println(username);
-        System.out.println(userid);
         ILoginService loginService = new LoginServiceImpl();
         List<Tree> treeList = loginService.getTrees(userid);
         request.setAttribute("treeList", treeList);
