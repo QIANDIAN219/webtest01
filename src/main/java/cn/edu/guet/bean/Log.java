@@ -1,6 +1,5 @@
 package cn.edu.guet.bean;
 
-import com.sun.xml.internal.ws.resources.UtilMessages;
 
 import java.sql.Timestamp;
 

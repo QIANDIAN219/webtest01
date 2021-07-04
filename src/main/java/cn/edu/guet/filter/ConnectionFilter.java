@@ -12,7 +12,8 @@ public class ConnectionFilter implements Filter {
     }
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
-        // 访问目标资源前
+        chain.doFilter(req, resp);  // 访问目标资源
+        /*// 访问目标资源前
         Connection connection = threadLocal.get();
         try {
             //String url = "jdbc:oracle:thin:@192.168.235.129:1521:orcl";
@@ -28,6 +29,7 @@ public class ConnectionFilter implements Filter {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
         chain.doFilter(req, resp);  // 访问目标资源
 
         // 访问目标资源后
@@ -37,7 +39,7 @@ public class ConnectionFilter implements Filter {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
+*/
     }
 
     public void init(FilterConfig config) throws ServletException {

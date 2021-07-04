@@ -26,6 +26,7 @@ public class ContextConfigListener implements ServletContextListener,
       */
         try {
             Map<String, ControllerMapping> controllerMappingMap = new Configuration().config();
+            System.out.println("mapsize:" + controllerMappingMap.size());
             sce.getServletContext().setAttribute("cn.edu.guet.controller", controllerMappingMap);
         } catch (URISyntaxException e) {
             e.printStackTrace();

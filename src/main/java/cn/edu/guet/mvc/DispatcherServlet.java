@@ -15,6 +15,8 @@ import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class DispatcherServlet extends HttpServlet {
@@ -27,9 +29,6 @@ public class DispatcherServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             String uri = request.getRequestURI();
             uri = uri.substring(uri.indexOf("/", 1) + 1);
@@ -93,5 +92,8 @@ public class DispatcherServlet extends HttpServlet {
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     }
 }

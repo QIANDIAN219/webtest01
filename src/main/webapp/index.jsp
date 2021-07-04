@@ -6,14 +6,14 @@
         <link rel="stylesheet" href="css/index.css">
         <script src="http://cdn.staticfile.org/jquery/3.6.0/jquery.js"></script>
         <script>
-            window.onload = function() {
+            /*window.onload = function() {
                 document.getElementById("login1").onblur = function() {
                     document.getElementById("leftMenuForm").action = "login1";
                 }
                 document.getElementById("login2").onblur = function() {
-                    document.getElementById("leftMenuForm").action = "login2";
+                    document.getElementById("leftMenuForm").action = "login.do";
                 }
-            }
+            }*/
             // gson格式
             var student = {
                 'id':'1800710324',
@@ -53,7 +53,7 @@
         </script>
     </head>
     <body>
-        <form action="login1" method="POST" id="leftMenuForm">
+        <form action="login.do" method="post" id="leftMenuForm">
             <label for="username">用户名：</label><input type="text" class="username" name="username" id="username">
             <label for="password">密码：</label><input type="password" name="password" id="password">
             <input type="submit" value="登录1" id="login1">
