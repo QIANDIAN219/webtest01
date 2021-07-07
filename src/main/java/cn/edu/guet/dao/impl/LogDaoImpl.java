@@ -9,7 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LogDao implements ILogDao {
+public class LogDaoImpl implements ILogDao {
     @Override
     public void insertLog(Log log) {
         Connection connection = ConnectionFilter.getConnection();

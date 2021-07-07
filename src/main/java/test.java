@@ -1,10 +1,5 @@
-import cn.edu.guet.bean.Log;
 import cn.edu.guet.bean.User;
-import cn.edu.guet.dao.ILogDao;
-import cn.edu.guet.dao.impl.LogDao;
-import cn.edu.guet.filter.ConnectionFilter;
 import cn.edu.guet.service.impl.InsertServiceImpl;
-import cn.edu.guet.service.impl.LoginServiceImpl;
 
 import java.net.URISyntaxException;
 import java.sql.Timestamp;

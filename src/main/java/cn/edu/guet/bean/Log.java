@@ -12,7 +12,18 @@ public class Log {
     private int time;
     private String ip;
     private String create_by;
-    private Timestamp create_time;
+    private Timestamp create_time = new Timestamp(System.currentTimeMillis());
+
+    public Log(int id, String user_name, String operation, String method, String params, int time, String ip, String create_by) {
+        this.id = id;
+        this.user_name = user_name;
+        this.operation = operation;
+        this.method = method;
+        this.params = params;
+        this.time = time;
+        this.ip = ip;
+        this.create_by = create_by;
+    }
 
     public int getId() {
         return id;
