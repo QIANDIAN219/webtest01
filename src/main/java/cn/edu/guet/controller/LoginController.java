@@ -9,7 +9,6 @@ import cn.edu.guet.service.impl.LoginServiceImpl;
 public class LoginController {
     @RequestMapping("login.do")
     public String Login(String username, String password) {
-        System.out.println(username);
         LoginServiceImpl loginService = new LoginServiceImpl();
         User user = loginService.login(username, password);
         System.out.println("userid:" + user.getUserId());

@@ -4,6 +4,7 @@ import cn.edu.guet.bean.Role;
 import cn.edu.guet.bean.Tree;
 import cn.edu.guet.bean.User;
 import cn.edu.guet.dao.ILoginDao;
+import cn.edu.guet.filter.ConnectionFilter;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -12,17 +13,12 @@ import java.util.List;
 public class LoginDaoImpl implements ILoginDao {
     @Override
     public User login(String username, String password) {
-//        Connection connection = JDBC.ConnectionOfMySQL();
-//        Connection connection = ConnectionFilter.getConnection();
-        Connection connection = null;
+        Connection connection = ConnectionFilter.getConnection();
         String sql = "SELECT * FROM tb_user WHERE username=? AND password=?";
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         User user = null;
         try {
-            String url = "jdbc:mysql://localhost:3306/myweb?useUnicode=true&characterEncoding=gbk";
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(url, "lzh", "lzh1234");
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
@@ -38,16 +34,13 @@ public class LoginDaoImpl implements ILoginDao {
             return user;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
         return user;
     }
 
     @Override
     public User getUser(String username, String password) {
-//        Connection connection = ConnectionFilter.getConnection();
-        Connection connection = null;
+        Connection connection = ConnectionFilter.getConnection();
         String sql = "SELECT * FROM tb_user WHERE username=? AND password=?";
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -105,16 +98,12 @@ public class LoginDaoImpl implements ILoginDao {
 
     @Override
     public List<Tree> getTrees(String userid) {
-//        Connection connection = ConnectionFilter.getConnection();
-        Connection connection = null;
+        Connection connection = ConnectionFilter.getConnection();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         String sql = null;
         List<Tree> list = new ArrayList<Tree>();
         try {
-            String url = "jdbc:mysql://localhost:3306/myweb?useUnicode=true&characterEncoding=gbk";
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(url, "lzh", "lzh1234");
             sql = "SELECT tree.* FROM tb_role_permission rp,tb_tree tree,tb_user_role ur WHERE tree.TreeId=rp.TreeId AND ur.roleId=rp.roleId AND ur.userId=?";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, userid);
@@ -132,8 +121,6 @@ public class LoginDaoImpl implements ILoginDao {
             return list;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
         return list;
     }
