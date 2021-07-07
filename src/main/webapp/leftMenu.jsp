@@ -1,7 +1,9 @@
 <%@ page import="cn.edu.guet.bean.User" %>
 <%@ page import="cn.edu.guet.bean.Role" %>
 <%@ page import="cn.edu.guet.bean.Tree" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="cn.edu.guet.service.ILoginService" %>
+<%@ page import="cn.edu.guet.service.impl.LoginServiceImpl" %><%--
   Created by IntelliJ IDEA.
   User: Lanzh
   Date: 2021/6/20
@@ -10,7 +12,12 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%List<Tree> treeList = (List<Tree>) request.getAttribute("treeList");%>
+<%--<%List<Tree> treeList = (List<Tree>) request.getAttribute("treeList");%>--%>
+<%
+    ILoginService loginService = new LoginServiceImpl();
+    String userid = request.getParameter("userid");
+    List<Tree> treeList = loginService.getTrees(userid);
+%>
 <html>
     <head>
         <title>Title</title>

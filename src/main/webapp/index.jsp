@@ -22,7 +22,7 @@
             $(document).ready(function(){
                 $("#login2").click(function() {
                     console.log("1234");
-                    $("#leftMenuForm").attr("action", "login2");
+                    $("#leftMenuForm").attr("action", "gettree.do");
                 })
                 $("input[id='username']").blur(function(){
                     $(this).addClass("checkUsername");

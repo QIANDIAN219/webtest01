@@ -1,5 +1,6 @@
 package cn.edu.guet.bean;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -11,7 +12,7 @@ public class User {
     private String realName;
     private String email;
     private String state;
-    private Date createTime;
+    private Timestamp createTime;
     List<Role> roleList=new ArrayList<Role>();
 
     public String getUserId() {
@@ -62,11 +63,11 @@ public class User {
         this.state = state;
     }
 
-    public Date getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 

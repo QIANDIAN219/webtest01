@@ -13,11 +13,11 @@
         <link rel="stylesheet" href="css/leftMenu.css">
         <script src="http://cdn.staticfile.org/jquery/3.6.0/jquery.js"></script>
         <script>
-            <%String userid = (String) request.getAttribute("userid");%>
+<%--            <%String userid = (String) request.getAttribute("userid");%>--%>
+            <%String userid = (String) request.getParameter("userid");%>
             $(function() {
                 /* 事件委托 将子元素事件绑定到父元素 用于动态绑定js事件 */
                 $("#leftMenu").on("click", "ul>li>a", function() {
-                    console.log(111);
                     var flag = $(this).parent().children("ul").is(":visible");
                     if(flag) {
                         $(this).parent().children("ul").hide();
@@ -26,7 +26,7 @@
                     }
                 })
                 $.ajax({
-                    url:'gettree?userid=<%=userid%>',
+                    url:'getTree.do?userid=<%=userid%>',
                     // async:false,
                     success:function(data) {
                         $.each(data, function(index, treef) {
